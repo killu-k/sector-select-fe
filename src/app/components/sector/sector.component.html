@@ -1,0 +1,16 @@
+<mat-form-field class="full-width">
+  <mat-label>Sectors</mat-label>
+  <mat-select
+    [ngModel]="selectedIds"
+    (ngModelChange)="onSelectionChange($event)" multiple required>
+
+    <ng-container *ngFor="let group of sectorGroups">
+      <mat-optgroup [label]="group.name">
+        <mat-option *ngFor="let child of group.children" [value]="child.id">
+          {{ child.name }}
+        </mat-option>
+      </mat-optgroup>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+

@@ -1,0 +1,57 @@
+<form [formGroup]="userForm" (ngSubmit)="save()">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Sector Selection Form
+    </mat-card-title>
+  </mat-card-header>
+
+      <mat-form-field class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Enter first name">
+        <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">
+          First name is required
+        </mat-error>
+        <mat-error *ngIf="userForm.get('firstName')?.hasError('minlength')">
+          Choose a longer name
+        </mat-error>
+        <mat-error *ngIf="userForm.get('firstName')?.hasError('maxlength')">
+          Choose a shorter name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Enter last name">
+        <mat-error *ngIf="userForm.get('lastName')?.hasError('required')">
+          Last name is required
+        </mat-error>
+        <mat-error *ngIf="userForm.get('lastName')?.hasError('minlength')">
+          Choose a longer name
+        </mat-error>
+        <mat-error *ngIf="userForm.get('lastName')?.hasError('maxlength')">
+          Choose a shorter name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="consent">
+        I agree to the terms
+      </mat-checkbox>
+      <mat-error *ngIf="userForm.get('consent')?.hasError('requiredTrue')">
+        Consent is required
+      </mat-error>
+
+      <app-sector
+        [selectedIds]="userForm.get('sectorIds')?.value"
+        (selectedIdsChange)="userForm.get('sectorIds')?.setValue($event)">
+      </app-sector>
+      <mat-error *ngIf="userForm.get('sectorIds')?.hasError('required') && userForm.get('consent')?.value">
+        Please select at least one sector
+      </mat-error>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">
+        Save
+      </button>
+
+</mat-card>
+</form>
