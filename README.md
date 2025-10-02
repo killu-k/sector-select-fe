@@ -18,9 +18,8 @@ A form where users enter their name, select sectors, and give consent.
 1. Clone the repository:
    ```bash
     git clone https://github.com/YOUR_REPO/sector-select.git
-    cd sector-select/frontend
     ```
-
+In project root directory:
 2. Install the dependencies:
 
     ```bash
